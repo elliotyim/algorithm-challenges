@@ -2,22 +2,31 @@ package com.el.ac.study.secondweek;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 public class SetOfStacks {
 
-  List<Stack<Object>> stacks;
+  List<MyStack<Object>> stacks = new ArrayList<>();
   int maxPile = 10;
+  int index = 0;
   
   public SetOfStacks() {
-    stacks = new ArrayList<>();
+    stacks.add(new MyStack<Object>());
   }
   
-  
-  
-  public static void main(String[] args) {
-    // TODO Auto-generated method stub
-
+  public void push(Object item) {
+    stacks.get(index).push(item);
+    if (stacks.get(index).size() == maxPile) {
+      stacks.add(new MyStack<Object>());
+      index++;
+    }
   }
-
+  
+  public void pop(Object item) {
+    stacks.get(index).pop();
+    if (stacks.get(index).size() == 0) {
+      stacks.remove(index);
+      index--;
+    }
+  }
+  
 }
